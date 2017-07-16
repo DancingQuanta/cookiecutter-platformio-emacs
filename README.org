@@ -38,7 +38,7 @@ Install requirements, I have the following in my Emacs config file
             
 #+END_SRC
 
-Largely based on the [[https://github.com/ZachMassia/platformio-mode][PlatformIO-mode]] documentation. See my website for a walk through of PlatformIO and Emacs use. 
+Largely based on the [[https://github.com/ZachMassia/platformio-mode][PlatformIO-mode]] documentation. See my [[https://nickgeorge.net/notes/platformio_emcas/][website]] for a walk through of PlatformIO and Emacs use. 
 
 ** useage
 Install cookiecutter. Either 

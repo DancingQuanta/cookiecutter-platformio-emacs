@@ -1,0 +1,55 @@
+* Cookiecutter platformio-Emacs
+
+A cookiecutter template for arduino projects using platformIO and Emacs. 
+
+** Requirements
+
+- [[https://github.com/audreyr/cookiecutter][Cookiecutter]]
+- [[http://docs.platformio.org/en/latest/what-is-platformio.html][PlatformIO docs]]
+- [[http://docs.platformio.org/en/latest/ide/emacs.html][Emacs PlatformIO]]
+- [[https://github.com/ZachMassia/platformio-mode][PlatformIO-mode]]
+- [[https://www.emacswiki.org/emacs/ArduinoSupport][Arduino-mode]]
+
+Install requirements, I have the following in my Emacs config file
+
+#+BEGIN_SRC emacs-lisp 
+  (use-package irony-eldoc)
+  (use-package irony-mode) 
+  (use-package platformio-mode)
+  ;; edit ino files with adruino mode. 
+  (add-to-list 'auto-mode-alist '("\\.ino$" . arduino-mode)) 
+  ;; Enable irony for all c++ files, and platformio-mode only
+  ;; when needed (platformio.ini present in project root).
+  (add-hook 'c++-mode-hook (lambda ()
+                             (irony-mode)
+                             (irony-eldoc)
+                             (platformio-conditionally-enable)))
+
+  ;; Use irony's completion functions.
+  (add-hook 'irony-mode-hook
+            (lambda ()
+              (define-key irony-mode-map [remap completion-at-point]
+                'irony-completion-at-point-async)
+
+              (define-key irony-mode-map [remap complete-symbol]
+                'irony-completion-at-point-async)
+
+              (irony-cdb-autosetup-compile-options)))
+            
+#+END_SRC
+
+Largely based on the [[https://github.com/ZachMassia/platformio-mode][PlatformIO-mode]] documentation. See my website for a walk through of PlatformIO and Emacs use. 
+
+** useage
+Install cookiecutter. Either 
+#+BEGIN_SRC bash :results verbatim 
+cookiecutter https://github.com/nkicg6/cookiecutter-platformio-emacs.git
+#+END_SRC
+
+Or, clone the repo and 
+
+#+BEGIN_SRC bash :results verbatim 
+cookiecutter cookiecutter-platformio-emacs/
+#+END_SRC
+
+Suggestions welcome!

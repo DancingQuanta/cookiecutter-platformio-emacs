@@ -1,0 +1,11 @@
+{
+"project_name":"project_name",
+"repo_name":"{{ cookiecutter.project_name|replace(' ','_')|lower}}",
+"author":"author",
+"email":"email",
+"description":"a short project description",
+"env":"teensy31 or uno",
+"platform":"teensy or uno",
+"board":"{{cookiecutter.env}}",
+"framework":"arduino"
+}
